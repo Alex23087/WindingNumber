@@ -427,9 +427,12 @@ public:
     { T *data = myData; myData = newdata; return data; }
 
     template <typename IT, bool FORWARD>
-    class base_iterator : 
-	public std::iterator<std::random_access_iterator_tag, T, exint> 
+    class base_iterator
     {
+        using iterator_category = std::random_access_iterator_tag;
+        using value_type = T;
+        using difference_type = exint;
+
         public:
 	    typedef IT&		reference;
 	    typedef IT*		pointer;
